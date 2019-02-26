@@ -13,6 +13,12 @@ class BlogsController < ApplicationController
     redirect_to blogs_path
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to blogs_path
+  end
+
   private
 
   # 以下のコードを追加
