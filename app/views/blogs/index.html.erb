@@ -1,6 +1,6 @@
-<%= link_to 'ブログ新規作成', blogs_new_path %>
+<%= link_to 'ブログ新規作成', '/blogs/new' %>
 <% @blogs.each do |blog| %>
   <p><%= blog.title %></p>
-  <p><%= blog.content %></p>
-  <%= link_to '削除', blogs_path(blog), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  <%= link_to '詳細', "/blogs/#{blog.id}" %>
+  <%= link_to '削除', "/blogs/#{blog.id}", method: :delete, data: { confirm: '本当に削除しますか？' } %>
 <% end %>

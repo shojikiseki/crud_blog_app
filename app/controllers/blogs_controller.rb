@@ -13,15 +13,19 @@ class BlogsController < ApplicationController
     redirect_to blogs_path
   end
 
+  # 以下のコードを追加
+  def show
+    @blog = Blog.find(params[:id])
+  end
+
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    blog = Blog.find(params[:id])
+    blog.destroy
     redirect_to blogs_path
   end
 
   private
 
-  # 以下のコードを追加
   def blog_params
     params.require(:blog).permit(:title, :content)
   end
