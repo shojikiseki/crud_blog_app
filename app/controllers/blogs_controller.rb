@@ -10,18 +10,28 @@ class BlogsController < ApplicationController
 
   def create
     Blog.create(blog_params)
-    redirect_to blogs_path
+    redirect_to '/blogs'
+  end
+
+  def show
+    @blog = Blog.find(params[:id])
   end
 
   # 以下のコードを追加
-  def show
+  def edit
     @blog = Blog.find(params[:id])
+  end
+
+  def update
+    blog = Blog.find(params[:id])
+    blog.update(blog_params)
+    redirect_to '/blogs'
   end
 
   def destroy
     blog = Blog.find(params[:id])
     blog.destroy
-    redirect_to blogs_path
+    redirect_to '/blogs'
   end
 
   private
