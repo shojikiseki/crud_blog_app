@@ -10,8 +10,12 @@ class BlogsController < ApplicationController
   end
 
   def create
-    Blog.create(blog_params)
-    redirect_to blogs_path
+    @blog = Blog.new(blog_params)
+    if @blog.save
+      redirect_to blogs_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -21,8 +25,11 @@ class BlogsController < ApplicationController
   end
 
   def update
-    @blog.update(blog_params)
-    redirect_to blogs_path
+    if @blog.update(blog_params)
+      redirect_to blogs_path
+    else
+      render :edit
+    end
   end
 
   def destroy
